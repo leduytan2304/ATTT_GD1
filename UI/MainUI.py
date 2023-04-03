@@ -61,8 +61,8 @@ def afterLogin(username, password):
     my_menu.add_cascade(label ="Role", menu = role)# tao menu Role
     role.add_command(label ="Create",command = our_command)
     role.add_command(label ="Drop",command = our_command)
-    role.add_command(label ="Grant",command = newRoot.quit)
-    role.add_command(label ="Revoke",command = newRoot.quit)
+    role.add_command(label ="Grant role to user",command = newRoot.quit)
+   
 
     privileges = Menu(my_menu)
 
