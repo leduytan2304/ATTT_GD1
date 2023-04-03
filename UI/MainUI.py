@@ -22,10 +22,7 @@ def login():
             cursor = connection.cursor()
             print("Login success")
             cursor.execute("SELECT * FROM NHANVIEN")
-
-
             rows = cursor.fetchall()
-
 
             for row in rows:
                 print(row)
@@ -76,9 +73,15 @@ def afterLogin(username, password):
     my_menu.add_cascade(label ="Check Privilege", menu = Check_privilege)# tao menu Check Privilege
     Check_privilege.add_command(label ="Check privilege of User", command = our_command)
     Check_privilege.add_command(label ="Check privilege of Role",command = newRoot.quit)
+    label = tk.Label(newRoot, text="List of user")
+    label.config(font=("Arial", 18))
+    label.place( x= 10, y = 40)
+    btn1 = tk.Button(newRoot, text="Create User", command=afterLoginUI)# button Create User
+    btn1.place(x= 200, y = 40)
+    btn2 = tk.Button(newRoot, text="Drop User", command=afterLoginUI)# button Drop User
+    btn2.place(x= 300, y = 40)
     
-    
-    tv.TreeView(newRoot,username, password)
+    tv.TreeView(newRoot,username, password) # module của TreeView
     
 
     
