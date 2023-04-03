@@ -3,10 +3,6 @@ import oracledb
 import TreeView as tv
 from tkinter import *
 
-        
-
-
-
 def login():
     username = username_entry.get()
     password = password_entry.get()
@@ -34,13 +30,11 @@ def login():
             print("Login fail")
             return False
     
-
 def afterLoginUI(newRoot):
      pass
      
 
 def afterLogin(username, password):
-
 
     #sau khi dang nhap hien 1 cửa sổ mới
     newRoot = Tk()
@@ -84,18 +78,9 @@ def afterLogin(username, password):
     tv.TreeView(newRoot,username, password) # module của TreeView
     
 
-    
-   
-
-
-
-
-
-
 root = tk.Tk()
 root.title("Oracle Login")
 root.geometry("300x200")
-
 
 username_label = tk.Label(root, text="Username:")
 username_label.pack()
@@ -110,10 +95,6 @@ login_button.pack()
 
     
 
-
-
-        
-  
 
 
 
