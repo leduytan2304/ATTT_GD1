@@ -15,7 +15,7 @@ def TreeView(root, userName, passWord):
         connection = oracledb.connect(**dsn)
         cursor = connection.cursor()
         print("Login success")
-        cursor.execute("SELECT * FROM NHANVIEN")
+        cursor.execute("select username, user_id, account_status, created from DBA_users")
         global rows
         rows = cursor.fetchall()
         total = cursor.rowcount
@@ -46,21 +46,19 @@ def TreeView(root, userName, passWord):
         my_tree.configure(
             columns=
             (
-            "MANV", 
-            "TENNV",
-            "PHAI", 
-            "NGAYSINH", 
-            "DIACHI"
+            "USERNAME", 
+            "USER ID",
+            "ACCOUNT STATUS", 
+            "CREATED DATE"
             )
         )
 
 
         my_tree.heading("#0", text = "ID",anchor=W)
-        my_tree.heading("MANV", text = "MANV",anchor=W)
-        my_tree.heading("TENNV", text = "TENNV",anchor=W)
-        my_tree.heading("PHAI", text = "PHAI",anchor=W)
-        my_tree.heading("NGAYSINH", text = "NGAYSINH",anchor=W)
-        my_tree.heading("DIACHI", text = "DIACHI",anchor=W)
+        my_tree.heading("USERNAME", text = "USERNAME",anchor=W)
+        my_tree.heading("USER ID", text = "USER ID",anchor=W)
+        my_tree.heading("ACCOUNT STATUS", text = "ACCOUNT STATUS",anchor=W)
+        my_tree.heading("CREATED DATE", text = "CREATED DATE",anchor=W)
         for i in rows:
             my_tree.insert('','end', values = i)
 
@@ -71,27 +69,15 @@ def TreeView(root, userName, passWord):
         my_tree.column("#1",stretch=NO, minwidth=0,width=125)
         my_tree.column("#2",stretch=NO, minwidth=25,width=125)
         my_tree.column("#3",stretch=NO, minwidth=25,width=125)
-        my_tree.column("#4",stretch=NO, minwidth=25,width=125)
 
 
         root.mainloop()
 
-        # connStr = cx_Oracle.connect("sys/tan123@localhost:1521/xepdb1", mode=cx_Oracle.SYSDBA)
-        # print("you are connected")
-        # #create a cursor
-        # cursor = connStr.cursor()
-        # sqlTxt = 'select * from NHANVIEN'
-        # cursor.execute(sqlTxt)
-        # rows = cursor.fetchall()
-        # total = cursor.rowcount
-        # print("total data entries: "+ str(total))
 
-        # connStr.commit()
 
-        #print the results
+
+
+
     except:
         pass
-#root = tk.Tk()
-#TreeView(root, 'sys', 'tan123')
-#connection.close()
 

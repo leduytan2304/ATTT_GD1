@@ -31,7 +31,7 @@ c = Checkbutton(root, text="With grant option", variable=check)
 c.place(x=160, y = 145)
 
 
-privilege_data =privilege_entry.get()
+privilege_data = privilege_entry.get()
 object_data= object_entry.get()
 user_data = username_entry.get()
 
