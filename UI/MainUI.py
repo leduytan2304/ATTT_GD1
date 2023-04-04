@@ -1,6 +1,10 @@
 import tkinter as tk
 import oracledb
+from functools import partial
 import TreeView as tv
+import LDT.LDT_1 as gup
+import LDT.LDT_2 as grp
+import LDT.LDT_3 as gru
 from tkinter import *
 
         
@@ -63,9 +67,9 @@ def afterLogin(username, password):
     privileges = Menu(my_menu)
 
     my_menu.add_cascade(label ="Privilege", menu = privileges)# tao menu Privilege
-    privileges.add_command(label ="Grant User Object Privilege",command = our_command)
-    privileges.add_command(label ="Grant Role Privilege",command = newRoot.quit)
-    privileges.add_command(label ="Grant Role Privilege for user",command = newRoot.quit)
+    privileges.add_command(label ="Grant User Object Privilege",command = partial(gup_ldt,username, password))
+    privileges.add_command(label ="Grant Role Privilege",command = partial(grp_ldt,username, password))
+    privileges.add_command(label ="Grant Role for user",command = partial(gru_ldt,username, password))
     privileges.add_command(label ="Grant Role Privilege for user",command = newRoot.quit)
 
     Check_privilege = Menu(my_menu)
@@ -82,8 +86,12 @@ def afterLogin(username, password):
     btn2.place(x= 300, y = 40)
     
     tv.TreeView(newRoot,username, password) # module của TreeView
-    
-
+def gup_ldt(username, password): #LDT lệnh sau khi click vào Grant User Object Privilege
+     gup.UI(username, password)  
+def grp_ldt(username, password):
+     grp.UI(username, password) 
+def gru_ldt(username, password):
+     gru.UI(username, password) 
     
    
 
