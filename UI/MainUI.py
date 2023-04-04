@@ -70,8 +70,7 @@ def afterLogin(username, password):
     privileges.add_command(label ="Grant User Object Privilege",command = partial(gup_ldt,username, password))
     privileges.add_command(label ="Grant Role Privilege",command = partial(grp_ldt,username, password))
     privileges.add_command(label ="Grant Role for user",command = partial(gru_ldt,username, password))
-    privileges.add_command(label ="Grant Role Privilege for user",command = newRoot.quit)
-
+  
     Check_privilege = Menu(my_menu)
 
     my_menu.add_cascade(label ="Check Privilege", menu = Check_privilege)# tao menu Check Privilege
