@@ -5,8 +5,6 @@ from tkinter import *
 
         
 
-
-
 def login():
     username = username_entry.get()
     password = password_entry.get()
@@ -81,7 +79,7 @@ def afterLogin(username, password):
     btn2 = tk.Button(newRoot, text="Drop User", command=afterLoginUI)# button Drop User
     btn2.place(x= 300, y = 40)
     
-    tv.TreeView(newRoot,username, password) # module của TreeView
+    tv.TreeView(newRoot, username, password) # module của TreeView
     
 
     
