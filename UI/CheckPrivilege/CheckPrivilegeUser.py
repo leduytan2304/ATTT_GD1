@@ -56,7 +56,7 @@ def checkPriUser_Ob(cursor):
         if flag == True:
             for i in tree_User_Ob.get_children():
                 tree_User_Ob.delete(i)
-            cursor.execute("SELECT GRANTEE,TABLE_NAME,COLUMN_NAME,PRIVILEGE,OWNER FROM DBA_COL_PRIVS WHERE GRANTEE = '{}'".format(val_name))
+            cursor.execute("SELECT GRANTEE,OWNER,TABLE_NAME,PRIVILEGE,TYPE FROM USER_TAB_PRIVS WHERE GRANTEE = '{}'".format(val_name))
             rows_ob_user_pri = cursor.fetchall()
             for row in rows_ob_user_pri:
                 tree_User_Ob.insert(parent='', index='end', values=row)
@@ -94,10 +94,10 @@ def checkPriUser_Ob(cursor):
     tree_User_Ob.column("5", anchor=CENTER, width=90)
 
     tree_User_Ob.heading("1", text="GRANTEE", anchor=CENTER)
-    tree_User_Ob.heading("2",text = "TABLE_NAME", anchor=CENTER)
-    tree_User_Ob.heading("3", text = "COLUMN_NAME", anchor=CENTER)
+    tree_User_Ob.heading("2",text = "OWNER", anchor=CENTER)
+    tree_User_Ob.heading("3", text = "TABLE_NAME", anchor=CENTER)
     tree_User_Ob.heading("4", text = "PRIVILEGE", anchor=CENTER)
-    tree_User_Ob.heading("5", text = "OWNER", anchor=CENTER)
+    tree_User_Ob.heading("5", text = "TYPE", anchor=CENTER)
 
 # Hàm kiểm tra quyền hệ thống của User
 def checkPriUser_Sys(cursor):
