@@ -1,6 +1,13 @@
 import tkinter as tk
 import oracledb
+from functools import partial
 import TreeView as tv
+import LDT.LDT_1 as gup
+import LDT.LDT_2 as grp
+import LDT.LDT_3 as gru
+import CheckPrivilege.CheckPrivilegeUser as cpu
+import CheckPrivilege.CheckPrivilegeRole as cpr
+import Revoke as RV
 from tkinter import *
 from tkinter import messagebox
 import PTM.PTM_1 as crl
@@ -25,8 +32,8 @@ def login():
         cursor.execute("select username, user_id, account_status, created from DBA_users")
         rows = cursor.fetchall()
 
-        for row in rows:
-            print(row)
+          #   for row in rows:
+          #       print(row)
         root.destroy()
         cursor.close()
         connection.close()
@@ -63,10 +70,11 @@ def afterLogin(username, password):
     privileges = Menu(my_menu)
 
     my_menu.add_cascade(label ="Privilege", menu = privileges)# tao menu Privilege
-    privileges.add_command(label ="Grant User Object Privilege", command = our_command)
-    privileges.add_command(label ="Grant Role Privilege", command = newRoot.quit)
-    privileges.add_command(label ="Grant Role Privilege for user", command = newRoot.quit)
-    privileges.add_command(label ="Grant Role Privilege for user", command = newRoot.quit)
+    privileges.add_command(label ="Grant User Object Privilege",command = partial(gup_ldt,username, password))
+    privileges.add_command(label ="Grant Role for user",command = partial(gru_ldt,username, password))
+    privileges.add_command(label ="Grant Role Privilege",command = partial(grp_ldt,username, password))
+    privileges.add_command(label ="Revoke User Object Privilege",command = partial(RV.Revoke_privilege_form_user,username, password))
+    privileges.add_command(label ="Revoke Role Privilege",command = partial(RV.Revoke_privilege_form_role,username, password))
 
     Check_privilege = Menu(my_menu)
 
@@ -133,6 +141,8 @@ def afterLogin(username, password):
 
     
     
+    Check_privilege.add_command(label ="Check privilege of User", command = partial(cpu.checkPriUser_window, username, password)) 
+    Check_privilege.add_command(label ="Check privilege of Role",command = partial(cpr.checkPriRole_window, username, password))
     label = tk.Label(newRoot, text="List of user")
     label.config(font=("Arial", 18))
     label.place( x= 10, y = 40)
@@ -158,6 +168,16 @@ def crl_ptm(username, password):
 
 def drl_ptm(username, password):
     drl.UI(username, password)
+
+def gup_ldt(username, password): #LDT lệnh sau khi click vào Grant User Object Privilege
+    gup.UI(username, password)  
+
+def grp_ldt(username, password):
+    grp.UI(username, password) 
+    
+def gru_ldt(username, password):
+    gru.UI(username, password) 
+    
 
 
 
