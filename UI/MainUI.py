@@ -67,8 +67,10 @@ def afterLogin(username, password):
 
     my_menu.add_cascade(label ="Privilege", menu = privileges)# tao menu Privilege
     privileges.add_command(label ="Grant User Object Privilege",command = partial(gup_ldt,username, password))
-    privileges.add_command(label ="Revoke User Object Privilege",command = partial(RV.Revoke_privilege_form_user,username, password))
     privileges.add_command(label ="Grant Role Privilege",command = partial(grp_ldt,username, password))
+    privileges.add_command(label ="Grant Role for user",command = partial(gru_ldt,username, password))
+    privileges.add_command(label ="Revoke User Object Privilege",command = partial(RV.Revoke_privilege_form_user,username, password))
+   
     privileges.add_command(label ="Revoke Role Privilege",command = partial(RV.Revoke_privilege_form_role,username, password))
 
     Check_privilege = Menu(my_menu)
