@@ -40,7 +40,7 @@ def UI(username, password):
             print("Please input role name")
         else:
             print(role_entry.get())
-            create_role(root, 'sys', 'minh2209', role_entry.get()) 
+            create_role(root, username, password, role_entry.get()) 
 
 
     Execute_btn = tk.Button(root, text="Create role", command=print_data) 
