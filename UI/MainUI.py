@@ -29,7 +29,10 @@ def login():
         connection = oracledb.connect(**dsn)
         cursor = connection.cursor()
         print("Login success")
+        
         cursor.execute("select username, user_id, account_status, created from DBA_users")
+        
+        #cursor.execute("alter session set \"_ORACLE_SCRIPT\"=true")
         rows = cursor.fetchall()
 
           #   for row in rows:
