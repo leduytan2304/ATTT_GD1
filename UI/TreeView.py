@@ -49,22 +49,7 @@ def TreeView(root, userName, passWord):
         for i in rows:
             my_tree.insert('','end', values = i)
 
-        
-        def on_select(event):
-            item = my_tree.focus()
-            text = my_tree.item(item, "values") 
 
-            # first_paramater = text[0]
-            # print(first_paramater)
-
-            return text[0]
-
-        my_tree.bind("<<TreeviewSelect>>", on_select)
-        
-        res = on_select(event)
-        
-       
-        print(type(res))
         
         #edit column 
         my_tree.column("#0",stretch=NO, minwidth=0,width=0)
@@ -75,8 +60,8 @@ def TreeView(root, userName, passWord):
         root.mainloop()
 
     except:
-        res = None
-    return res
+        print("Error")
+
     
 
 def tableList(root, userName, passWord):   
@@ -118,15 +103,15 @@ def tableList(root, userName, passWord):
         for i in rows:
             my_tree.insert('','end', values = i)
 
-        def on_select(event):
+        def on_select2(event):
             item = my_tree.focus()
             text = my_tree.item(item, "values")
             first_paramater = text[0]
             print(first_paramater)
             return first_paramater
 
-        my_tree.bind("<<TreeviewSelect>>", on_select)
-        res = on_select(None)
+        my_tree.bind("<<TreeviewSelect>>", on_select2)
+        res = on_select2(None)
         print(res)
         
         #edit column 

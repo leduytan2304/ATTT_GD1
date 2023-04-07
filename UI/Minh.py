@@ -106,14 +106,23 @@ def afterLogin(username, password):
 
     def dropUser():
         cur = tv.active_login(username, password)
-        user_drop = tv.TreeView(newRoot, username, password)
 
-        print("User drop:" + user_drop)
-        sqltxt = "DROP USER " + user_drop
-        print(sqltxt)
-        cur.execute(sqltxt)
+        dropUser = tk.Tk()
+        dropUser.title("Drop User")
+        dropUser.geometry("400x150")
+
+        username_label = tk.Label(dropUser, text="Username:")
+        username_label.pack()
+
+        def drop_User():
+            sqltxt = "DROP USER " + username_entry.get()
+            print(sqltxt)
+            cur.execute(sqltxt)
         
-        
+        username_entry = tk.Entry(dropUser)
+        username_entry.pack()
+        submit_button = tk.Button(dropUser, text="Drop", command=drop_User)
+        submit_button.pack()
         
         
     def userList():
