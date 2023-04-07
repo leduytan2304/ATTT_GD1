@@ -3,6 +3,9 @@ import oracledb
 import TreeView as tv
 from tkinter import *
 from tkinter import messagebox
+import PTM.PTM_1 as crl
+import PTM.PTM_2 as drl
+from functools import partial
 
         
 def login():
@@ -52,8 +55,8 @@ def afterLogin(username, password):
     role = Menu(my_menu)
 
     my_menu.add_cascade(label ="Role", menu = role)# tao menu Role
-    role.add_command(label ="Create", command = None)
-    role.add_command(label ="Drop", command = None)
+    role.add_command(label ="Create", command = partial(crl_ptm, username, password))
+    role.add_command(label ="Drop", command = partial(drl_ptm, username, password))
     role.add_command(label ="Grant role to user", command = newRoot.quit)
    
 
@@ -87,13 +90,12 @@ def afterLogin(username, password):
         def create_User():
             new_username = username_entry.get()
             new_password = password_entry.get()
-            sqltxt = "CREATE USER " + new_username + " IDENTIFIED BY " + new_password
-            print(sqltxt)
-            if cur != None:
-                cur.execute(sqltxt)
-                messagebox.showinfo("Create user successfully!")
-            else:
-                messagebox.showinfo("Create user fail")
+            create_txt = "CREATE USER " + new_username + " IDENTIFIED BY " + new_password
+            grant_txt = "GRANT CREATE SESSION TO " + new_username
+            print(create_txt)
+            cur.execute(create_txt)
+            cur.execute(grant_txt)
+
         
         username_entry = tk.Entry(createUser)
         username_entry.pack()
@@ -103,11 +105,9 @@ def afterLogin(username, password):
         submit_button.pack()
 
     def dropUser():
-        user_drop = tv.TreeView(newRoot, username, password)
-        
         cur = tv.active_login(username, password)
-        
-        
+        user_drop = tv.TreeView(newRoot, username, password)
+
         print("User drop:" + user_drop)
         sqltxt = "DROP USER " + user_drop
         print(sqltxt)
@@ -143,6 +143,12 @@ def afterLogin(username, password):
     
     tv.TreeView(newRoot, username, password) # module của TreeView
 
+
+def crl_ptm(username, password):
+    crl.UI(username, password)
+
+def drl_ptm(username, password):
+    drl.UI(username, password)
 
 
 
