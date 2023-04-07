@@ -9,8 +9,6 @@ from tkinter import *
 
         
 
-
-
 def login():
     username = username_entry.get()
     password = password_entry.get()
