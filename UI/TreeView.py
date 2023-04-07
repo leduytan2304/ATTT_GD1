@@ -14,7 +14,6 @@ def TreeView(root, userName, passWord):
                 "mode": oracledb.SYSDBA }
         connection = oracledb.connect(**dsn)
         cursor = connection.cursor()
-        print("Login success")
         cursor.execute("SELECT * FROM NHANVIEN")
         global rows
         rows = cursor.fetchall()
