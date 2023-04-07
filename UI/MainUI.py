@@ -5,6 +5,7 @@ import TreeView as tv
 import LDT.LDT_1 as gup
 import LDT.LDT_2 as grp
 import LDT.LDT_3 as gru
+import Revoke as RV
 from tkinter import *
 
         
@@ -26,8 +27,8 @@ def login():
             cursor.execute("SELECT * FROM NHANVIEN")
             rows = cursor.fetchall()
 
-            for row in rows:
-                print(row)
+          #   for row in rows:
+          #       print(row)
             root.destroy()
             cursor.close()
             connection.close()
@@ -66,9 +67,10 @@ def afterLogin(username, password):
 
     my_menu.add_cascade(label ="Privilege", menu = privileges)# tao menu Privilege
     privileges.add_command(label ="Grant User Object Privilege",command = partial(gup_ldt,username, password))
+    privileges.add_command(label ="Revoke User Object Privilege",command = partial(RV.Revoke_privilege_form_user,username, password))
     privileges.add_command(label ="Grant Role Privilege",command = partial(grp_ldt,username, password))
-    privileges.add_command(label ="Grant Role for user",command = partial(gru_ldt,username, password))
-  
+    privileges.add_command(label ="Revoke Role Privilege",command = partial(RV.Revoke_privilege_form_role,username, password))
+
     Check_privilege = Menu(my_menu)
 
     my_menu.add_cascade(label ="Check Privilege", menu = Check_privilege)# tao menu Check Privilege
@@ -90,10 +92,6 @@ def grp_ldt(username, password):
 def gru_ldt(username, password):
      gru.UI(username, password) 
     
-   
-
-
-
 
 
 
@@ -112,16 +110,6 @@ password_entry = tk.Entry(root, show="*")
 password_entry.pack()
 login_button = tk.Button(root, text="Login", command=login)
 login_button.pack()
-
-    
-
-
-
-        
-  
-
-
-
 
 
 root.mainloop()
