@@ -82,7 +82,7 @@ def afterLogin(username, password):
     my_menu.add_cascade(label ="Check Privilege", menu = Check_privilege)# tao menu Check Privilege
     Check_privilege.add_command(label ="Check privilege of User", command = partial(cpu.checkPriUser_window, username, password)) 
     Check_privilege.add_command(label ="Check privilege of Role",command = partial(cpr.checkPriRole_window, username, password))
-    #Datk1912#
+    
     def createUser():
         cur = tv.active_login(username, password)
         print(username, password)
