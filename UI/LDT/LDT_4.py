@@ -26,7 +26,7 @@ def Grant_role_for_user(root, username, password, role, column,table, user):
 
         for row in rows:
             print(row)
-        if(role == "select" or role == "Select" or role == "SELECT" or role == "delete" or role == "Delete" or role == "DELETE"):
+        if(role == "insert" or role == "Insert" or role == "INSERT" or role == "delete" or role == "Delete" or role == "DELETE"):
             messagebox.showerror("ERROR ", "Error can not "+ "Grant " + role +" on columns " + column + " ON "+ table +  " TO " + user)
         else:    
             sqlTxt = "Grant " + role + "("+ column+ ")" + " ON "+ table + " TO " + user 
@@ -36,7 +36,7 @@ def Grant_role_for_user(root, username, password, role, column,table, user):
 
                     
     except oracledb.DatabaseError as e:                  
-                messagebox.showerror("ERROR ", "Error can not "+ "GRANT " + role + "(" + column +")" + " ON "+ ""+ " TO " + user)
+                messagebox.showerror("ERROR ", "Error can not "+ "GRANT " + role + "(" + column +")" + " ON "+ table + " TO " + user)
 def UI(username, password):  
     root = tk.Tk()
     root.title("Grant privileges on column for user")
@@ -77,8 +77,9 @@ def UI(username, password):
         else:
             print(privileges_entry.get())
             print(column_entry.get())
-            print(username_entry.get())
             print(table_entry.get())
+            print(username_entry.get())
+           
             Grant_role_for_user(root,'sys','tan123',privileges_entry.get(),column_entry.get(), table_entry.get(),  username_entry.get()) 
 
 
