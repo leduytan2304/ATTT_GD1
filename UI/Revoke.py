@@ -19,9 +19,9 @@ def Revoke(privilage_entry,object_entry,user_entry,cursor):
             print(f"Revoke {p} on {o} from {u}")
             cursor.execute(f"Revoke {p} on {o} from {u}")
                   
-        messagebox.showinfo("Thông báo", "Thu hồi quyền thành công!")
+        messagebox.showinfo("SUCCESS", "Revoke privilage success")
     except :
-        messagebox.showinfo("Thông báo", "Sai các trường thông tin, mời nhập lại")
+        messagebox.showerror("FAILED", "Revoke privilage failed")
     
 
 
@@ -39,7 +39,7 @@ def Revoke_privilege_form_user(username,password):
 
         Ru = Tk()
         Ru.title("Revoke Privilege from User")
-        Ru.geometry("500x320")
+        Ru.geometry("300x220")
 
         privilege_label = Label(Ru, text="Privilege:").grid(row = 0, column = 0)
         privilage_entry = Entry(Ru)
@@ -85,7 +85,7 @@ def Revoke_privilege_form_role(username,password):
 
         Rr = Tk()
         Rr.title("Revoke Privilege from User")
-        Rr.geometry("500x320")
+        Rr.geometry("300x220")
 
         privilege_label = Label(Rr, text="Privilege:").grid(row = 0, column = 0)
         privilage_entry = Entry(Rr)

@@ -51,7 +51,7 @@ def afterLogin(username, password):
 
     #sau khi dang nhap hien 1 cửa sổ mới
     newRoot = Tk()
-    newRoot.title("Hệ thống quản lý bệnh viện")
+    newRoot.title("Hệ thống quản lý nhân viên")
     newRoot.geometry("800x520")
     my_menu = Menu(newRoot)
     newRoot.config(menu = my_menu)

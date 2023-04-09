@@ -14,7 +14,6 @@ CREATE TABLE NHANVIEN (
    MANQL VARCHAR2(10),
     PHG VARCHAR2(12)
 );
-DROP TABLE NHANVIEN
 CREATE TABLE PHONGBAN
 (
     MAPB VARCHAR2(10),
@@ -38,22 +37,3 @@ CREATE TABLE PHANCONG
 
 insert into NHANVIEN (MANV, TENNV, PHAI, NGAYSINH, DIACHI, SODT, LUONG, PHUCAP, VAITRO, MANQL, PHG) 
 values (1,'Le Duy Tan' , 'Nam',TO_DATE('23-04-2002', 'DD-MM-YYYY'),'038, Nguyen Van Cu', 0964717217, 5000000, 300000, 'SINH VIEN','537', '1' )
-
-select  * from NHANVIEN
-
-create user temp IDENTIFIED BY abc;
-drop user temp
-grant create session to temp;
-grant select on NHANVIEN to temp;
-grant create table to temp;
-
-revoke select on NHANVIEN from temp;
-revoke create session from temp
-
-Revoke create session from TEMP
-
-SELECT * FROM USER_TAB_PRIVS WHERE GRANTEE = 'TEMP';
-
-SELECT * FROM USER_SYS_PRIVS WHERE USERNAME = 'TEMP';
-
-SELECT * FROM DBA_USERS where username = 'TEMP';
