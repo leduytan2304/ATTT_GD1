@@ -4,6 +4,7 @@ import tkinter as tk
 import oracledb
 from tkinter import *
 from tkinter import messagebox
+import random
 
 
 
@@ -26,15 +27,24 @@ def Grant_role_for_user(root, username, password, role, column,table, user):
 
         for row in rows:
             print(row)
-        if(role == "select" or role == "Select" or role == "SELECT" or role == "delete" or role == "Delete" or role == "DELETE"):
+        if(role == "Insert" or role == "INSERT" or role == "insert" or role == "delete" or role == "Delete" or role == "DELETE"):
             messagebox.showerror("ERROR ", "Error can not "+ "Grant " + role +" on columns " + column + " ON "+ table +  " TO " + user)
-        else:    
+        if(role == "update" or role == "Update" or role == "UPDATE"):    
             sqlTxt = "Grant " + role + "("+ column+ ")" + " ON "+ table + " TO " + user 
             #GRANT UPDATE (TENNV) ON employees TO temp;
             cursor.execute(sqlTxt)
             messagebox.showinfo("Notification", ("Grant " + role + "("+ column+ ")" + " ON "+ table + " TO " + user  + " sucess") )
-
-                    
+        else:
+           
+            ramdon_number = random.randint(1, 10000) 
+            sqlTxt1 ="CREATE VIEW " +  "view_name"+ str(ramdon_number)+ " AS SELECT "+ column +" FROM NHANVIEN"
+            #sqlTxt1 = "CREATE VIEW view_nameTENNVNHANVIEN AS SELECT TENNV FROM NHANVIEN"
+            print("first: " + sqlTxt1 ) 
+            cursor.execute(sqlTxt1)               
+            sqlTxt2 ="GRANT SELECT ON "+  "view_name" + str(ramdon_number) + " TO " + user;      
+            print("second: " + sqlTxt2 ) 
+            cursor.execute(sqlTxt2)
+            messagebox.showinfo("Notification", ("Grant " + role + "("+ column+ ")" + " ON "+ table + " TO " + user  + " sucess") )
     except oracledb.DatabaseError as e:                  
                 messagebox.showerror("ERROR ", "Error can not "+ "GRANT " + role + "(" + column +")" + " ON "+ ""+ " TO " + user)
 def UI(username, password):  
@@ -47,7 +57,6 @@ def UI(username, password):
     privileges_entry = tk.Entry(root)
     privileges_entry.place(x=160, y = 45)
 
-    
 
     column = tk.Label(root, text="Columns")
     column.place(x=60, y = 80)
