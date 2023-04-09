@@ -105,6 +105,7 @@ def afterLogin(username, password):
             cur.execute('alter session set "_ORACLE_SCRIPT" = true')
             cur.execute(create_txt)
             cur.execute(grant_txt)
+            messagebox.showinfo("Notification", ("Create user success") )
 
         
         username_entry = tk.Entry(createUser)
@@ -129,7 +130,7 @@ def afterLogin(username, password):
             print(sqltxt)
             cur.execute('alter session set "_ORACLE_SCRIPT" = true')
             cur.execute(sqltxt)
-        
+            messagebox.showinfo("Notification", ("Drop user success") )
         username_entry = tk.Entry(dropUser)
         username_entry.pack()
         submit_button = tk.Button(dropUser, text="Drop", command=drop_User)

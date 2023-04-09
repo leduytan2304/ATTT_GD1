@@ -33,7 +33,7 @@ def Grant_role_for_user(root, username, password, role, column,table, user):
             sqlTxt = "Grant " + role + "("+ column+ ")" + " ON "+ table + " TO " + user 
             #GRANT UPDATE (TENNV) ON employees TO temp;
             cursor.execute(sqlTxt)
-            messagebox.showinfo("Notification", ("Grant " + role + "("+ column+ ")" + " ON "+ table + " TO " + user  + " sucess") )
+            messagebox.showinfo("Notification", ("Grant " + role + "("+ column+ ")" + " ON "+ table + " TO " + user  + " success") )
         else:
            
             ramdon_number = random.randint(1, 10000) 
@@ -44,7 +44,7 @@ def Grant_role_for_user(root, username, password, role, column,table, user):
             sqlTxt2 ="GRANT SELECT ON "+  "view_name" + str(ramdon_number) + " TO " + user;      
             print("second: " + sqlTxt2 ) 
             cursor.execute(sqlTxt2)
-            messagebox.showinfo("Notification", ("Grant " + role + "("+ column+ ")" + " ON "+ table + " TO " + user  + " sucess") )
+            messagebox.showinfo("Notification", ("Grant " + role + "("+ column+ ")" + " ON "+ table + " TO " + user  + " success") )
     except oracledb.DatabaseError as e:                  
                 messagebox.showerror("ERROR ", "Error can not "+ "GRANT " + role + "(" + column +")" + " ON "+ table + " TO " + user)
 def UI(username, password):  

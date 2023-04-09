@@ -26,7 +26,7 @@ def login_user_privilege(root, username, password, privilege, object, role):
             print(row)
         sqlTxt = "GRANT  " + privilege + " ON "+ object + " TO " + role
         cursor.execute(sqlTxt)
-        messagebox.showinfo("Notification", ("Grant " + privilege + " ON "+ object + " TO " + role  + " sucess") )
+        messagebox.showinfo("Notification", ("Grant " + privilege + " ON "+ object + " TO " + role  + " success") )
     except oracledb.DatabaseError as e:
         messagebox.showerror("ERROR ", "Error can not "+ "Grant " + privilege + " ON "+ object + " TO " + role + " WITH GRANT OPTION" )
 #SELECT * FROM ROLE_TAB_PRIVS where TABLE_NAME ='NHANVIEN'      

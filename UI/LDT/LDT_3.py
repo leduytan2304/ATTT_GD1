@@ -29,7 +29,7 @@ def Grant_role_for_user(root, username, password, role, user):
        
         sqlTxt = "GRANT  " + role + " TO " + user
         cursor.execute(sqlTxt)
-        messagebox.showinfo("Notification", ("Grant " + role  + " TO " + user  + " sucess") )
+        messagebox.showinfo("Notification", ("Grant " + role  + " TO " + user  + " success") )
        
                     
     except oracledb.DatabaseError as e:                  
