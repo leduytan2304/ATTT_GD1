@@ -5,6 +5,7 @@ import TreeView as tv
 import LDT.LDT_1 as gup
 import LDT.LDT_2 as grp
 import LDT.LDT_3 as gru
+import LDT.LDT_4 as col
 import CheckPrivilege.CheckPrivilegeUser as cpu
 import CheckPrivilege.CheckPrivilegeRole as cpr
 import Revoke as RV
@@ -73,6 +74,7 @@ def afterLogin(username, password):
     privileges.add_command(label ="Grant User Object Privilege",command = partial(gup_ldt,username, password))
     privileges.add_command(label ="Grant Role for user",command = partial(gru_ldt,username, password))
     privileges.add_command(label ="Grant Role Privilege",command = partial(grp_ldt,username, password))
+    privileges.add_command(label ="Grant privilege on columns",command = partial(col_ldt,username, password))
     privileges.add_command(label ="Revoke User Object Privilege",command = partial(RV.Revoke_privilege_form_user,username, password))
     privileges.add_command(label ="Revoke Role Privilege",command = partial(RV.Revoke_privilege_form_role,username, password))
 
@@ -167,6 +169,26 @@ def grp_ldt(username, password):
      grp.UI(username, password) 
 def gru_ldt(username, password):
      gru.UI(username, password) 
+def col_ldt(username, password):
+     col.UI(username, password) 
+    
+   
+
+
+def crl_ptm(username, password):
+    crl.UI(username, password)
+
+def drl_ptm(username, password):
+    drl.UI(username, password)
+
+def gup_ldt(username, password): #LDT lệnh sau khi click vào Grant User Object Privilege
+    gup.UI(username, password)  
+
+def grp_ldt(username, password):
+    grp.UI(username, password) 
+    
+def gru_ldt(username, password):
+    gru.UI(username, password) 
     
    
 
