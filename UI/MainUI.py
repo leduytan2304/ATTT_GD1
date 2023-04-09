@@ -65,7 +65,6 @@ def afterLogin(username, password):
     my_menu.add_cascade(label ="Role", menu = role)# tao menu Role
     role.add_command(label ="Create", command = partial(crl_ptm, username, password))
     role.add_command(label ="Drop", command = partial(drl_ptm, username, password))
-    role.add_command(label ="Grant role to user", command = newRoot.quit)
    
 
     privileges = Menu(my_menu)
@@ -81,9 +80,9 @@ def afterLogin(username, password):
     Check_privilege = Menu(my_menu)
 
     my_menu.add_cascade(label ="Check Privilege", menu = Check_privilege)# tao menu Check Privilege
-    Check_privilege.add_command(label ="Check privilege of User", command = our_command)
-    Check_privilege.add_command(label ="Check privilege of Role", command = newRoot.quit)
-
+    Check_privilege.add_command(label ="Check privilege of User", command = partial(cpu.checkPriUser_window, username, password)) 
+    Check_privilege.add_command(label ="Check privilege of Role",command = partial(cpr.checkPriRole_window, username, password))
+    
     def createUser():
         cur = tv.active_login(username, password)
         print(username, password)
@@ -93,9 +92,9 @@ def afterLogin(username, password):
         createUser.geometry("400x300")
 
         username_label = tk.Label(createUser, text="Username:")
-        username_label.pack()
+        username_label.grid(row=0, column=0)
         password_label = tk.Label(createUser, text="Password:")
-        password_label.pack()
+        password_label.grid(row=1, column=0)
         
         def create_User():
             new_username = username_entry.get()
@@ -103,16 +102,17 @@ def afterLogin(username, password):
             create_txt = "CREATE USER " + new_username + " IDENTIFIED BY " + new_password
             grant_txt = "GRANT CREATE SESSION TO " + new_username
             print(create_txt)
+            cur.execute('alter session set "_ORACLE_SCRIPT" = true')
             cur.execute(create_txt)
             cur.execute(grant_txt)
 
         
         username_entry = tk.Entry(createUser)
-        username_entry.pack()
+        username_entry.grid(row=0, column=1)
         password_entry = tk.Entry(createUser)
-        password_entry.pack()
+        password_entry.grid(row=1, column=1)
         submit_button = tk.Button(createUser, text="Create", command=create_User)
-        submit_button.pack()
+        submit_button.grid(row=2, column=1)
 
     def dropUser():
         cur = tv.active_login(username, password)
@@ -127,6 +127,7 @@ def afterLogin(username, password):
         def drop_User():
             sqltxt = "DROP USER " + username_entry.get()
             print(sqltxt)
+            cur.execute('alter session set "_ORACLE_SCRIPT" = true')
             cur.execute(sqltxt)
         
         username_entry = tk.Entry(dropUser)
@@ -143,8 +144,7 @@ def afterLogin(username, password):
 
     
     
-    Check_privilege.add_command(label ="Check privilege of User", command = partial(cpu.checkPriUser_window, username, password)) 
-    Check_privilege.add_command(label ="Check privilege of Role",command = partial(cpr.checkPriRole_window, username, password))
+    
     label = tk.Label(newRoot, text="List of user")
     label.config(font=("Arial", 18))
     label.place( x= 10, y = 40)
@@ -189,8 +189,6 @@ def grp_ldt(username, password):
     
 def gru_ldt(username, password):
     gru.UI(username, password) 
-    
-   
 
 
 def crl_ptm(username, password):

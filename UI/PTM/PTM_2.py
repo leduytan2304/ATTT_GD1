@@ -18,6 +18,7 @@ def drop_role(root, username, password, role):
         cursor = connection.cursor()
        
         sqlTxt = "Drop role " + role 
+        cursor.execute('alter session set "_ORACLE_SCRIPT" = true')
         cursor.execute(sqlTxt)
         messagebox.showinfo("Notification", ("Drop role " + role  + " sucess"))
        

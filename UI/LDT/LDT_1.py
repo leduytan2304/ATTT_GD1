@@ -27,11 +27,11 @@ def grant_user_privilege(root, username, password, privilege, object, user,check
         for row in rows:
             print(row)
         if(checkOption == 0):
-                    sqlTxt = "GRANT  " + privilege + " ON "+ object + " TO " + user
+                    sqlTxt = "GRANT " + privilege + " ON "+ object + " TO " + user
                     cursor.execute(sqlTxt)
                     messagebox.showinfo("Notification", ("Grant " + privilege + " ON "+ object + " TO " + user  + " sucess") )
         else:
-                    sqlTxt = "GRANT  " + privilege + " ON "+ object + " TO " + user + " WITH GRANT OPTION"
+                    sqlTxt = "GRANT " + privilege + " ON "+ object + " TO " + user + " WITH GRANT OPTION"
                     cursor.execute(sqlTxt)
                     messagebox.showinfo("Notification", ("Grant " + privilege + " ON "+ object + " TO " + user  + " WITH GRANT OPTION" + " sucess") )
     except oracledb.DatabaseError as e:

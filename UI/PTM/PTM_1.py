@@ -18,6 +18,7 @@ def create_role(root, username, password, role):
         cursor = connection.cursor()
        
         sqlTxt = "Create role " + role 
+        cursor.execute('alter session set "_ORACLE_SCRIPT" = true')
         cursor.execute(sqlTxt)
         messagebox.showinfo("Notification", ("Create role " + role  + " sucess"))
        
