@@ -63,7 +63,7 @@ def UI(username, password):
     user_data = username_entry.get()
     def print_data():
         if(privilege_entry.get() =="" or object_entry.get() =="" or username_entry.get() ==""):
-            print("please input in all the file")
+            print("please input in all the textbox")
         else:
             print(privilege_entry.get())
             print(object_entry.get())
