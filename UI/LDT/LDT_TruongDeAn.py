@@ -256,10 +256,10 @@ def UI_Update(username, password):
     NgayBD_entry.place(x=160, y = 125)
    
     Phong = tk.Label(root, text="Phong")
-    Phong.place(x=60, y = 120)
+    Phong.place(x=60, y = 160)
     Phong.config(font=("Arial", 12))
     Phong_entry = tk.Entry(root)
-    Phong_entry.place(x=160, y = 125)   
+    Phong_entry.place(x=160, y = 165)   
 
     
 
@@ -272,7 +272,7 @@ def UI_Update(username, password):
             print("please input in all the textbox")
         else:
             MaDA_data =MaDA_entry.get()
-            TenDA_data = TenDA_entry.get()
+            TenDA_data  = TenDA_entry.get()
             NgayBD_data = NgayBD_entry.get()
             Phong_data = Phong_entry.get()
             print(MaDA_entry.get())
@@ -281,7 +281,7 @@ def UI_Update(username, password):
             print(Phong_entry.get())
             try:
                 cur = active_login(username, password)
-                sqlTxt = "UPDATE system.PHONGBAN SET TenPB = '" + TenPB_data+ "', TRPHG ='" + TruongPB_data + "' WHERE MAPB = '"+ Ma_data + "'" 
+                sqlTxt = "UPDATE system.DEAN SET  TENDA ='" + TenDA_data +"', NGAYBD = TO_DATE('" + NgayBD_data +"', 'YYYY-MM-DD'), PHONG ='" + Phong_data +  "' WHERE MADA = '"+ MaDA_data + "'" 
                 print("sql text:" + sqlTxt)
                 cur.execute(sqlTxt)
                 print("sql text:" + sqlTxt)
@@ -297,6 +297,108 @@ def UI_Update(username, password):
     #SELECT GRANTEE,GRANTED_ROLE FROM DBA_ROLE_PRIVS WHERE GRANTED_ROLE = 'DATAENTRY'
     root.mainloop()
 
+def UI_Insert(username, password):  
+
+    root = tk.Tk()
+    root.title("Insert on DEAN")
+    root.geometry("400x320")       
+    MaDA = tk.Label(root, text="MaDA")
+    MaDA.place(x=60, y = 40)
+    MaDA.config(font=("Arial", 12))
+    MaDA_entry = tk.Entry(root)
+    MaDA_entry.place(x=160, y = 45)
+
+
+    TenDA = tk.Label(root, text="TenDA")
+    TenDA.place(x=60, y = 80)
+    TenDA.config(font=("Arial", 12))
+    TenDA_entry = tk.Entry(root)
+    TenDA_entry.place(x=160, y = 85)
+
+    NgayBD = tk.Label(root, text="NgayBD")
+    NgayBD.place(x=60, y = 120)
+    NgayBD.config(font=("Arial", 12))
+    NgayBD_entry = tk.Entry(root)
+    NgayBD_entry.place(x=160, y = 125)
+   
+    Phong = tk.Label(root, text="Phong")
+    Phong.place(x=60, y = 160)
+    Phong.config(font=("Arial", 12))
+    Phong_entry = tk.Entry(root)
+    Phong_entry.place(x=160, y = 165)   
+
+    
+
+    MaDA_data =MaDA_entry.get()
+    TenDA_data = TenDA_entry.get()
+    NgayBD_data = NgayBD_entry.get()
+    Phong_data = Phong_entry.get()
+    def print_data():
+        if(MaDA_entry.get() ==""  or TenDA_entry.get() =="" or NgayBD_entry.get() =="" or Phong_entry.get() ==""):
+            print("please input in all the textbox")
+        else:
+            MaDA_data =MaDA_entry.get()
+            TenDA_data  = TenDA_entry.get()
+            NgayBD_data = NgayBD_entry.get()
+            Phong_data = Phong_entry.get()
+            print(MaDA_entry.get())
+            print(TenDA_entry.get())
+            print(NgayBD_entry.get())
+            print(Phong_entry.get())
+            try:
+                cur = active_login(username, password)
+                sqlTxt = "insert into system.DEAN  (MADA, TENDA, NGAYBD, PHONG) values ('" + MaDA_data +"', '" + TenDA_data + "',  TO_DATE('" + NgayBD_data +"', 'YYYY-MM-DD'), '" + Phong_data + "') "
+                print("sql text:" + sqlTxt)
+                cur.execute(sqlTxt)
+                print("sql text:" + sqlTxt)
+                cur.execute("COMMIT")
+            except:
+                print("da xay ra loi") 
+        
+           
+
+
+    Execute_btn = tk.Button(root, text="Insert", command=print_data)# button Drop User
+    Execute_btn.place(x= 180, y = 200)
+    #SELECT GRANTEE,GRANTED_ROLE FROM DBA_ROLE_PRIVS WHERE GRANTED_ROLE = 'DATAENTRY'
+    root.mainloop()
+
+def UI_Delete(username, password):  
+
+    root = tk.Tk()
+    root.title("Insert on DEAN")
+    root.geometry("400x320")       
+    MaDA = tk.Label(root, text="MaDA")
+    MaDA.place(x=60, y = 40)
+    MaDA.config(font=("Arial", 12))
+    MaDA_entry = tk.Entry(root)
+    MaDA_entry.place(x=160, y = 45)
+
+
+    
+    MaDA_data =MaDA_entry.get()
+    def print_data_3():
+        if(MaDA_entry.get() ==""):
+            print("please input in all the textbox")
+        else:
+            MaDA_data =MaDA_entry.get()
+            
+            print(MaDA_entry.get())
+            
+            try:
+                cur = active_login(username, password)
+                #delete from system.DEAN where MADA = 'DA0007'; 
+                sqlTxt = "delete from system.DEAN where MADA = '" + MaDA_data +"'" 
+                print("sql text:" + sqlTxt)
+                cur.execute(sqlTxt)
+                print("sql text:" + sqlTxt)
+                cur.execute("COMMIT")
+            except:
+                print("da xay ra loi") 
+    Execute_btn = tk.Button(root, text="Delete", command=print_data_3)# button Drop User
+    Execute_btn.place(x= 200, y = 200)
+        #SELECT GRANTEE,GRANTED_ROLE FROM DBA_ROLE_PRIVS WHERE GRANTED_ROLE = 'DATAENTRY'
+    root.mainloop()
 def UI_2(username, password):  
 
     root = tk.Tk()
@@ -480,9 +582,13 @@ def afterLogin(username, password):
         def tableList():
             tableList_LDT(newRoot,username, password)
         def Update_PhongBan():
-            UI(username, password)
+            UI_Update(username, password)
         def Update_NHANVIEN():
             UI_2(username, password)
+        def Delete_NHANVIEN():
+            UI_Delete(username, password)
+        def Update_NHANVIEN():
+            UI_Insert(username, password)
 
         btn3 = tk.Button(newRoot, text="User List", command=userList)
         btn3.place(x= 50, y = 40)
@@ -493,7 +599,7 @@ def afterLogin(username, password):
         btn5.place(x= 200, y = 40)
         btn6 = tk.Button(newRoot, text="ADD NEW DEAN ", command=Update_NHANVIEN)
         btn6.place(x= 350, y = 40)
-        btn6 = tk.Button(newRoot, text="ADD DELETE DEAN ", command=Update_NHANVIEN)
+        btn6 = tk.Button(newRoot, text=" DELETE DEAN ", command=Delete_NHANVIEN)
         btn6.place(x= 500, y = 40)
        
         TreeView_LDT(newRoot,username, password) # module của TreeView
