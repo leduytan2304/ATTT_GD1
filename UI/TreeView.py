@@ -10,8 +10,7 @@ def TreeView(root, userName, passWord):
             "port": "1521",
             "sid": "xe",
             "user": userName,
-            "password": passWord,
-            "mode": oracledb.SYSDBA }
+            "password": passWord}
         connection = oracledb.connect(**dsn)
         cursor = connection.cursor()
         cursor.execute("select username, user_id, account_status, created from DBA_users")
@@ -133,8 +132,7 @@ def active_login(username, password):
             "port": "1521",
             "sid": "xe",
             "user": username,
-            "password": password,
-            "mode": oracledb.SYSDBA }
+            "password": password}
         connection = oracledb.connect(**dsn)
         cursor = connection.cursor()
         return cursor
