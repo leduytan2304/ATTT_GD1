@@ -22,7 +22,7 @@ def TreeView_LDT(root, userName, passWord):
             }
         connection = oracledb.connect(**dsn)
         cursor = connection.cursor()
-        cursor.execute("select * from sys.NHANVIEN")
+        cursor.execute("select * from system.NHANVIEN")
         global rows
         rows = cursor.fetchall()
         total = cursor.rowcount
@@ -93,7 +93,7 @@ def TreeView_LDT(root, userName, passWord):
 def tableList_LDT(root, userName, passWord):   
     try:
         cur = active_login(userName, passWord)
-        cur.execute("select * from sys.NHANVIEN")
+        cur.execute("select * from system.NHANVIEN")
         global rows
         rows = cur.fetchall()
         total = cur.rowcount
@@ -151,6 +151,10 @@ def tableList_LDT(root, userName, passWord):
     return res
 
 
+        
+        
+
+
 def active_login(username, password):
     try:
         dsn = {
@@ -163,67 +167,127 @@ def active_login(username, password):
             }
         connection = oracledb.connect(**dsn)
         cursor = connection.cursor()
+        
         return cursor
         
     except Exception as e:
         return None
 
 def UI(username, password):  
+
     root = tk.Tk()
-    root.title("Grant privileges on column for user")
+    root.title("Update on PHONGBAN")
     root.geometry("400x320")       
-    privileges = tk.Label(root, text="Privileges")
-    privileges.place(x=60, y = 40)
-    privileges.config(font=("Arial", 12))
-    privileges_entry = tk.Entry(root)
-    privileges_entry.place(x=160, y = 45)
+    MaPB = tk.Label(root, text="MaPB")
+    MaPB.place(x=60, y = 40)
+    MaPB.config(font=("Arial", 12))
+    MaPB_entry = tk.Entry(root)
+    MaPB_entry.place(x=160, y = 45)
 
 
-    column = tk.Label(root, text="Columns")
-    column.place(x=60, y = 80)
-    column.config(font=("Arial", 12))
-    column_entry = tk.Entry(root)
-    column_entry.place(x=160, y = 90)
+    TenPB = tk.Label(root, text="TenPB")
+    TenPB.place(x=60, y = 80)
+    TenPB.config(font=("Arial", 12))
+    TenPB_entry = tk.Entry(root)
+    TenPB_entry.place(x=160, y = 90)
 
-    table = tk.Label(root, text="Object")
-    table.place(x=60, y = 120)
-    table.config(font=("Arial", 12))
-    table_entry = tk.Entry(root)
-    table_entry.place(x=160, y = 125)
+    TruongPB = tk.Label(root, text="TruongPB")
+    TruongPB.place(x=60, y = 120)
+    TruongPB.config(font=("Arial", 12))
+    TruongPB_entry = tk.Entry(root)
+    TruongPB_entry.place(x=160, y = 125)
    
 
-    username = tk.Label(root, text="User")
-    username.place(x=60, y = 160)
-    username.config(font=("Arial", 12))
-    username_entry = tk.Entry(root)
-    username_entry.place(x=160, y = 170)
+    
 
-    privilege_data =privileges_entry.get()
-
-    user_data = username_entry.get()
+    Ma_data =MaPB_entry.get()
+    TenPB_data = TenPB_entry.get()
+    TruongPB_data = TruongPB_entry.get()
     def print_data():
-        if(privileges_entry.get() ==""  or username_entry.get() ==""):
+        if(MaPB_entry.get() ==""  or TenPB_entry.get() =="" or TruongPB_entry.get() ==""):
             print("please input in all the textbox")
         else:
-            print(privileges_entry.get())
-            print(column_entry.get())
-            print(table_entry.get())
-            print(username_entry.get())
+            Ma_data =MaPB_entry.get()
+            TenPB_data = TenPB_entry.get()
+            TruongPB_data = TruongPB_entry.get()
+            print(MaPB_entry.get())
+            print(TenPB_entry.get())
+            print(TruongPB_entry.get())
+            try:
+                cur = active_login(username, password)
+                sqlTxt = "UPDATE system.PHONGBAN SET TenPB = '" + TenPB_data+ "', TRPHG ='" + TruongPB_data + "' WHERE MAPB = '"+ Ma_data + "'" 
+                print("sql text:" + sqlTxt)
+                cur.execute(sqlTxt)
+                print("sql text:" + sqlTxt)
+                cur.execute("COMMIT")
+            except:
+                print("da xay ra loi") 
+        
            
 
 
-    Execute_btn = tk.Button(root, text="Grant role on columns", command=print_data)# button Drop User
+    Execute_btn = tk.Button(root, text="Update", command=print_data)# button Drop User
     Execute_btn.place(x= 180, y = 200)
     #SELECT GRANTEE,GRANTED_ROLE FROM DBA_ROLE_PRIVS WHERE GRANTED_ROLE = 'DATAENTRY'
     root.mainloop()
+def UI_2(username, password):  
 
-def Update_PhongBan_LDT(username, password):
-    try:
-        cur = active_login(username, password)
-        UI(username, password)
-        #cur.execute("select * from sys.NHANVIEN")
-    except:
-        pass
+    root = tk.Tk()
+    root.title("Grant privileges on column for user")
+    root.geometry("400x320")       
+    MaPB = tk.Label(root, text="MaPB")
+    MaPB.place(x=60, y = 40)
+    MaPB.config(font=("Arial", 12))
+    MaPB_entry = tk.Entry(root)
+    MaPB_entry.place(x=160, y = 45)
+
+
+    TenPB = tk.Label(root, text="TenPB")
+    TenPB.place(x=60, y = 80)
+    TenPB.config(font=("Arial", 12))
+    TenPB_entry = tk.Entry(root)
+    TenPB_entry.place(x=160, y = 90)
+
+    TruongPB = tk.Label(root, text="TruongPB")
+    TruongPB.place(x=60, y = 120)
+    TruongPB.config(font=("Arial", 12))
+    TruongPB_entry = tk.Entry(root)
+    TruongPB_entry.place(x=160, y = 125)
+   
+
+    
+
+    Ma_data =MaPB_entry.get()
+
+    TenPB_data = TenPB_entry.get()
+    TruongPB_data = TruongPB_entry.get()
+    def print_data():
+        if(MaPB_entry.get() ==""  or TenPB_entry.get() ==""):
+            print("please input in all the textbox")
+        else:
+            Ma_data =MaPB_entry.get()
+            TenPB_data = TenPB_entry.get()
+            TruongPB_data = TruongPB_entry.get()
+            print(MaPB_entry.get())
+            print(TenPB_entry.get())
+            print(TruongPB_entry.get())
+            try:
+                cur = active_login(username, password)
+                sqlTxt = "UPDATE system.PHONGBAN SET TenPB = '" + TenPB_data+ "', TRPHG ='" + TruongPB_data + "' WHERE MAPB = '"+ Ma_data + "'" 
+                print("sql text:" + sqlTxt)
+                cur.execute(sqlTxt)
+                cur.execute("COMMIT")
+            except:
+                print("da xay ra loi") 
+        
+           
+
+
+    Execute_btn = tk.Button(root, text="Update", command=print_data)# button Drop User
+    Execute_btn.place(x= 180, y = 200)
+    #SELECT GRANTEE,GRANTED_ROLE FROM DBA_ROLE_PRIVS WHERE GRANTED_ROLE = 'DATAENTRY'
+    root.mainloop()
+   
 
         
 def login():
@@ -241,11 +305,8 @@ def login():
         connection = oracledb.connect(**dsn)
         cursor = connection.cursor()
         print("Login success")
-        cursor.execute("select * from sys.NHANVIEN")
+        cursor.execute("select * from system.NHANVIEN")
         rows = cursor.fetchall()
-
-        # for row in rows:
-        #     print(row)
         root.destroy()
         cursor.close()
         connection.close()
@@ -287,8 +348,9 @@ def afterLogin(username, password):
         def tableList():
             tableList_LDT(newRoot,username, password)
         def Update_PhongBan():
-            Update_PhongBan_LDT(username, password)
-        
+            UI(username, password)
+
+
         btn3 = tk.Button(newRoot, text="User List", command=userList)
         btn3.place(x= 400, y = 40)
 
