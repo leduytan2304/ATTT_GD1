@@ -230,6 +230,73 @@ def UI(username, password):
     Execute_btn.place(x= 180, y = 200)
     #SELECT GRANTEE,GRANTED_ROLE FROM DBA_ROLE_PRIVS WHERE GRANTED_ROLE = 'DATAENTRY'
     root.mainloop()
+
+def UI_Update(username, password):  
+
+    root = tk.Tk()
+    root.title("Update on DEAN")
+    root.geometry("400x320")       
+    MaDA = tk.Label(root, text="MaDA")
+    MaDA.place(x=60, y = 40)
+    MaDA.config(font=("Arial", 12))
+    MaDA_entry = tk.Entry(root)
+    MaDA_entry.place(x=160, y = 45)
+
+
+    TenDA = tk.Label(root, text="TenDA")
+    TenDA.place(x=60, y = 80)
+    TenDA.config(font=("Arial", 12))
+    TenDA_entry = tk.Entry(root)
+    TenDA_entry.place(x=160, y = 85)
+
+    NgayBD = tk.Label(root, text="NgayBD")
+    NgayBD.place(x=60, y = 120)
+    NgayBD.config(font=("Arial", 12))
+    NgayBD_entry = tk.Entry(root)
+    NgayBD_entry.place(x=160, y = 125)
+   
+    Phong = tk.Label(root, text="Phong")
+    Phong.place(x=60, y = 120)
+    Phong.config(font=("Arial", 12))
+    Phong_entry = tk.Entry(root)
+    Phong_entry.place(x=160, y = 125)   
+
+    
+
+    MaDA_data =MaDA_entry.get()
+    TenDA_data = TenDA_entry.get()
+    NgayBD_data = NgayBD_entry.get()
+    Phong_data = Phong_entry.get()
+    def print_data():
+        if(MaDA_entry.get() ==""  or TenDA_entry.get() =="" or NgayBD_entry.get() =="" or Phong_entry.get() ==""):
+            print("please input in all the textbox")
+        else:
+            MaDA_data =MaDA_entry.get()
+            TenDA_data = TenDA_entry.get()
+            NgayBD_data = NgayBD_entry.get()
+            Phong_data = Phong_entry.get()
+            print(MaDA_entry.get())
+            print(TenDA_entry.get())
+            print(NgayBD_entry.get())
+            print(Phong_entry.get())
+            try:
+                cur = active_login(username, password)
+                sqlTxt = "UPDATE system.PHONGBAN SET TenPB = '" + TenPB_data+ "', TRPHG ='" + TruongPB_data + "' WHERE MAPB = '"+ Ma_data + "'" 
+                print("sql text:" + sqlTxt)
+                cur.execute(sqlTxt)
+                print("sql text:" + sqlTxt)
+                cur.execute("COMMIT")
+            except:
+                print("da xay ra loi") 
+        
+           
+
+
+    Execute_btn = tk.Button(root, text="Update", command=print_data)# button Drop User
+    Execute_btn.place(x= 180, y = 200)
+    #SELECT GRANTEE,GRANTED_ROLE FROM DBA_ROLE_PRIVS WHERE GRANTED_ROLE = 'DATAENTRY'
+    root.mainloop()
+
 def UI_2(username, password):  
 
     root = tk.Tk()
@@ -391,7 +458,7 @@ def afterLogin(username, password):
     #     pass
     # else:
         newRoot = Tk()
-        newRoot.title("Hệ thống quản lý nhân viên")
+        newRoot.title("Truong De An")
         newRoot.geometry("800x520")
         my_menu = Menu(newRoot)
         newRoot.config(menu = my_menu)
@@ -422,12 +489,13 @@ def afterLogin(username, password):
 
         btn4 = tk.Button(newRoot, text="Table List", command=tableList)
         btn4.place(x= 120, y = 40)
-        btn5 = tk.Button(newRoot, text="Update PHONGBAN Info ", command=Update_PhongBan)
-        btn5.place(x= 250, y = 40)
-        btn6 = tk.Button(newRoot, text="Update NHANVIEN Info ", command=Update_NHANVIEN)
-        btn6.place(x= 450, y = 40)
-        btn7 = tk.Button(newRoot, text="View salary ", command=Update_NHANVIEN)
-        btn7.place(x= 600, y = 40)
+        btn5 = tk.Button(newRoot, text="Update DEAN Info ", command=Update_PhongBan)
+        btn5.place(x= 200, y = 40)
+        btn6 = tk.Button(newRoot, text="ADD NEW DEAN ", command=Update_NHANVIEN)
+        btn6.place(x= 350, y = 40)
+        btn6 = tk.Button(newRoot, text="ADD DELETE DEAN ", command=Update_NHANVIEN)
+        btn6.place(x= 500, y = 40)
+       
         TreeView_LDT(newRoot,username, password) # module của TreeView
 
 
