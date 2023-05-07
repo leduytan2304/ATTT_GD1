@@ -66,7 +66,7 @@ def truongphong_window(username, password):
         personal_infor_button.grid(row=1, column=1)
 
         phancong_infor_button = Button(truongphong_Window,
-            text = "Xem thông tin phân công",
+            text = "Xem thông tin khádasdas",
             width = 20,
             command =  partial(phancong_infor, cursor))
         phancong_infor_button.grid(row=3, column=1)
