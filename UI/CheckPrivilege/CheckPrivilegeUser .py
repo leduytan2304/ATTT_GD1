@@ -13,8 +13,7 @@ def checkPriUser_window(username, password):
             "port": "1521",
             "sid": "xe",
             "user": username,
-            "password": password,
-            "mode": oracledb.SYSDBA }
+            "password": password}
         connection = oracledb.connect(**dsn)
         cursor = connection.cursor()
         checkPriUserWindow = Tk()

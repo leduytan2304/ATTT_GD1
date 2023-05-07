@@ -14,8 +14,7 @@ def grant_user_privilege(root, username, password, privilege, object, user,check
                 "port": "1521",
                 "sid": "xe",
                 "user": username,
-                "password": password,
-                "mode": oracledb.SYSDBA }
+                "password": password}
         connection = oracledb.connect(**dsn)
         cursor = connection.cursor()
         print("Login success")
