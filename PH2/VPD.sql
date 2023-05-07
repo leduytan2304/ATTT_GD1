@@ -14,7 +14,7 @@ END;
 BEGIN
   DBMS_RLS.ADD_POLICY (
     object_schema   => 'system',
-    object_name     => 'view_NhanVien',
+    object_name     => 'view_NV_NhanVien',
     policy_name     => 'policy_NhanVien',
     function_schema => 'system',
     policy_function => 'policy_NhanVien',
@@ -26,7 +26,7 @@ END;
 BEGIN
   DBMS_RLS.ADD_POLICY (
     object_schema   => 'system',
-    object_name     => 'view_NVPhanCong',
+    object_name     => 'view_NV_PhanCong',
     policy_name     => 'policy_NhanVien',
     function_schema => 'system',
     policy_function => 'policy_NhanVien',
