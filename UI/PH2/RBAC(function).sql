@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> f142fc1cc3f69272582a645d061eeb53397560ec
 --CS#3
 --them function insert PHANCONG
 DROP PROCEDURE INSERT_PHANCONG;
@@ -168,4 +172,8 @@ END;
 --grant quyen chay function cho truong phong
 GRANT EXECUTE ON INSERT_PHANCONG TO truongphong;
 GRANT EXECUTE ON DELETE_PHANCONG TO truongphong;
+<<<<<<< HEAD
 GRANT EXECUTE ON UPDATE_PHANCONG TO truongphong;
+=======
+GRANT EXECUTE ON UPDATE_PHANCONG TO truongphong;
+>>>>>>> f142fc1cc3f69272582a645d061eeb53397560ec
