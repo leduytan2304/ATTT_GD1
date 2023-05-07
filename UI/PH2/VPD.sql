@@ -1,7 +1,6 @@
-<<<<<<< HEAD
-=======
 
->>>>>>> f142fc1cc3f69272582a645d061eeb53397560ec
+
+
 --CS#3
 --function xem nhan vien thuoc phong ban
 drop function Select_View_TruongPhong_NV;
@@ -43,11 +42,10 @@ begin
     object_schema   => 'system',
     object_name     => 'View_TruongPhong_Select_NhanVien_Info',
     policy_name     => 'VPD_View_TruongPhong_Select_NhanVien_Info');
-<<<<<<< HEAD
-end;
-=======
+
 end;
 
+end;
 
 
 
@@ -58,4 +56,5 @@ end;
 
 
 
->>>>>>> f142fc1cc3f69272582a645d061eeb53397560ec
+
+

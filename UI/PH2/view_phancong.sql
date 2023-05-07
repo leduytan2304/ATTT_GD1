@@ -31,8 +31,8 @@ begin
         object_schema   => 'system',
         object_name     => 'PHANCONG',
         policy_name     => 'PHANCONG_Select_Info');
-<<<<<<< HEAD
+
 end;
-=======
+
 end;
->>>>>>> f142fc1cc3f69272582a645d061eeb53397560ec
+
