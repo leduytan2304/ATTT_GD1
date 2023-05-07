@@ -1,3 +1,5 @@
+
+--CS#3
 --function xem nhan vien thuoc phong ban
 drop function Select_View_TruongPhong_NV;
 create or replace function Select_View_TruongPhong_NV(p_schema IN VARCHAR2, p_object IN VARCHAR2)
