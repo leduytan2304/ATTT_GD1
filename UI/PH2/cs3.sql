@@ -1,3 +1,5 @@
+
+--CS#3
 --tao view xem nhan vien thuoc phong ban cua truong phong
 drop view View_TruongPhong_Select_NhanVien_Info;
 CREATE OR REPLACE VIEW View_TruongPhong_Select_NhanVien_Info AS
