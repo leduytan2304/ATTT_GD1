@@ -1,0 +1,1 @@
+Grant UPDATE(LUONG, PHUCAP) ON view_NV_NhanVien TO NhanVien;

@@ -30,9 +30,10 @@ def login():
         connection = oracledb.connect(**dsn)
         cursor = connection.cursor()
         print("Login success")
-        cursor.execute("select username, user_id, account_status, created from DBA_users")
+        #cursor.execute("select username, user_id, account_status, created from DBA_users")
+        cursor.execute("SELECT column_name FROM user_tab_columns WHERE table_name = 'NHANVIEN'")
         rows = cursor.fetchall()
-
+        print(rows)
 
         root.destroy()
         cursor.close()
