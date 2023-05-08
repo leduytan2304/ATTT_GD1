@@ -567,8 +567,7 @@ def UI_3(username, password):
         
 def login(username,password):
     
-    print(username)
-    print(password)
+    
     try:
         dsn = {
         "host": "localhost",
@@ -639,6 +638,7 @@ def afterLogin(username, password):
         btn7 = tk.Button(newRoot, text="DEAN List ", command=DeAn_List)
         btn7.place(x= 670, y = 40)
         TreeView_LDT(newRoot,username, password) # module của TreeView
+        newRoot.mainloop()
 
 def Start_NHANSU():
     global root
@@ -659,8 +659,8 @@ def Start_NHANSU():
     password_entry.pack()
     login_button = tk.Button(root, text="Login", command=login)
     login_button.pack()
-def begin():
-    login(username,password)
+    root.mainloop()
+#afterLogin('nv14','1')
 
 
 

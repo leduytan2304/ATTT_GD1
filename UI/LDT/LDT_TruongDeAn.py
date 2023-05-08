@@ -463,6 +463,7 @@ def afterLogin(username, password):
 
         role = Menu(my_menu)
 
+
       
 
 
@@ -499,7 +500,7 @@ def afterLogin(username, password):
         btn7 = tk.Button(newRoot, text="DEAN List ", command=DeAn_List)
         btn7.place(x= 670, y = 40)
         TreeView_LDT(newRoot,username, password) # module của TreeView
-
+        newRoot.mainloop()
 
     
 def start_DEAN():
@@ -521,7 +522,7 @@ def start_DEAN():
     login_button.pack()
     root.mainloop()
 
-login(username,password)
+#afterLogin('nv16','1')
 
 
     

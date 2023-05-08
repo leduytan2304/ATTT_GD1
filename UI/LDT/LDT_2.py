@@ -68,7 +68,7 @@ def UI(username_login, password_login):
             print(privilege_entry.get())
             print(object_entry.get())
             print(username_entry.get())
-            print(username)
+            print(username_login)
             
             login_user_privilege(username_login,password_login,privilege_entry.get(), object_entry.get(), username_entry.get()) 
 
