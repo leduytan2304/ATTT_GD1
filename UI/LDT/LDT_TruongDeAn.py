@@ -504,23 +504,24 @@ def afterLogin(username, password):
 
 
     
+def start_DEAN():
+    root = tk.Tk()
+    root.title("WELCOME TRUONG DE AN")
+    root.geometry("300x200")
 
-root = tk.Tk()
-root.title("Oracle Login")
-root.geometry("300x200")
-
-username_label = tk.Label(root, text="Username:")
-username_label.pack()
-username_entry = tk.Entry(root)
-username_entry.pack()
-password_label = tk.Label(root, text="Password:")
-password_label.pack()
-password_entry = tk.Entry(root, show="*")
-password_entry.pack()
-login_button = tk.Button(root, text="Login", command=login)
-login_button.pack()
+    username_label = tk.Label(root, text="Username:")
+    username_label.pack()
+    username_entry = tk.Entry(root)
+    username_entry.pack()
+    password_label = tk.Label(root, text="Password:")
+    password_label.pack()
+    password_entry = tk.Entry(root, show="*")
+    password_entry.pack()
+    login_button = tk.Button(root, text="Login", command=login)
+    login_button.pack()
 
 
-root.mainloop()
+    root.mainloop()
+
 
     

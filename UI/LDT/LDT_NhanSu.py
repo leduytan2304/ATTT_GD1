@@ -592,8 +592,6 @@ def login():
         messagebox.showerror("showerror", "Error")
         print("Login fail")
         return False
-    
-
      
 
 def afterLogin(username, password):
@@ -640,25 +638,23 @@ def afterLogin(username, password):
         btn7.place(x= 670, y = 40)
         TreeView_LDT(newRoot,username, password) # module của TreeView
 
+def Start_NHANSU():
+    root = tk.Tk()
+    root.title("WELCOME NHANSU")
+    root.geometry("300x200")
 
-    
-
-root = tk.Tk()
-root.title("Oracle Login")
-root.geometry("300x200")
-
-username_label = tk.Label(root, text="Username:")
-username_label.pack()
-username_entry = tk.Entry(root)
-username_entry.pack()
-password_label = tk.Label(root, text="Password:")
-password_label.pack()
-password_entry = tk.Entry(root, show="*")
-password_entry.pack()
-login_button = tk.Button(root, text="Login", command=login)
-login_button.pack()
+    username_label = tk.Label(root, text="Username:")
+    username_label.pack()
+    username_entry = tk.Entry(root)
+    username_entry.pack()
+    password_label = tk.Label(root, text="Password:")
+    password_label.pack()
+    password_entry = tk.Entry(root, show="*")
+    password_entry.pack()
+    login_button = tk.Button(root, text="Login", command=login)
+    login_button.pack()
 
 
-root.mainloop()
+    root.mainloop()
 
     
