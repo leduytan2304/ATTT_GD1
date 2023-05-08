@@ -11,6 +11,7 @@ create or replace view  view_NV_PhanCong as
 
 Grant SELECT ON view_NV_NhanVien TO NhanVien;
 Grant SELECT ON view_NV_PhanCong TO NhanVien;
-Grant UPDATE(NGAYSINH, DIACHI, SODT) ON view_NhanVien TO NhanVien;
+revoke UPDATE ON NhanVien from NhanVien;
+Grant UPDATE (DIACHI,NGAYSINH,SODT) ON NhanVien TO NhanVien;
 Grant SELECT ON PHONGBAN TO NhanVien;
-Grant SELECT ON DEAN TO NhanVien;
+Grant SELECT ON DEAN TO NhanVien;   
