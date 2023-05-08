@@ -505,10 +505,12 @@ def afterLogin(username, password):
 
     
 def start_DEAN():
+    global root
     root = tk.Tk()
     root.title("WELCOME TRUONG DE AN")
     root.geometry("300x200")
-
+    global username_entry
+    global password_entry
     username_label = tk.Label(root, text="Username:")
     username_label.pack()
     username_entry = tk.Entry(root)
@@ -519,9 +521,9 @@ def start_DEAN():
     password_entry.pack()
     login_button = tk.Button(root, text="Login", command=login)
     login_button.pack()
-
-
     root.mainloop()
+
+start_DEAN()
 
 
     

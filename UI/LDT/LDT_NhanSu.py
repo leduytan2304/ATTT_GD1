@@ -639,8 +639,12 @@ def afterLogin(username, password):
         TreeView_LDT(newRoot,username, password) # module của TreeView
 
 def Start_NHANSU():
+    global root
     root = tk.Tk()
     root.title("WELCOME NHANSU")
+    global username_entry
+    global password_entry
+    
     root.geometry("300x200")
 
     username_label = tk.Label(root, text="Username:")
@@ -656,5 +660,6 @@ def Start_NHANSU():
 
 
     root.mainloop()
+Start_NHANSU()
 
     
