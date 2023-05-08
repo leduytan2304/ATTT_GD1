@@ -568,6 +568,8 @@ def UI_3(username, password):
 def login():
     username = username_entry.get()
     password = password_entry.get()
+    print(username)
+    print(password)
     try:
         dsn = {
         "host": "localhost",
