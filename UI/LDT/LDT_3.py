@@ -7,7 +7,7 @@ from tkinter import messagebox
 
 
 
-def Grant_role_for_user(root, username, password, role, user):   
+def Grant_role_for_user(username, password, role, user):   
     try:
         dsn = {
                 "host": "localhost",
@@ -33,7 +33,7 @@ def Grant_role_for_user(root, username, password, role, user):
                     
     except oracledb.DatabaseError as e:                  
                 messagebox.showerror("ERROR ", "Error can not "+ "Grant " + role +" TO " + user)
-def UI(username, password):  
+def UI(username_login, password_login):  
     root = tk.Tk()
     root.title("Grant privileges for user")
     root.geometry("400x320")       
@@ -59,11 +59,11 @@ def UI(username, password):
             print(role_entry.get())
             print(role_entry.get())
             print(username_entry.get())
-            Grant_role_for_user(root,'sys','tan123',role_entry.get(),  username_entry.get()) 
+            Grant_role_for_user(username_login, password_login,role_entry.get(),  username_entry.get()) 
 
 
     Execute_btn = tk.Button(root, text="Grant role", command=print_data)# button Drop User
     Execute_btn.place(x= 180, y = 200)
     #SELECT GRANTEE,GRANTED_ROLE FROM DBA_ROLE_PRIVS WHERE GRANTED_ROLE = 'DATAENTRY'
     root.mainloop()
-#UI('sys', 'tan123');
+#UI('system', 'tan123');

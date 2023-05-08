@@ -420,9 +420,7 @@ def UI_Delete(username, password):
  
 
         
-def login():
-    username = username_entry.get()
-    password = password_entry.get()
+def login(username,password):
     try:
         dsn = {
         "host": "localhost",
@@ -523,7 +521,7 @@ def start_DEAN():
     login_button.pack()
     root.mainloop()
 
-start_DEAN()
+login(username,password)
 
 
     

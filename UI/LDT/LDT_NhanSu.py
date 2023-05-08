@@ -565,9 +565,8 @@ def UI_3(username, password):
     root.mainloop()  
 
         
-def login():
-    username = username_entry.get()
-    password = password_entry.get()
+def login(username,password):
+    
     print(username)
     print(password)
     try:
@@ -660,9 +659,9 @@ def Start_NHANSU():
     password_entry.pack()
     login_button = tk.Button(root, text="Login", command=login)
     login_button.pack()
+def begin():
+    login(username,password)
 
 
-    root.mainloop()
-Start_NHANSU()
 
     
