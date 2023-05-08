@@ -57,12 +57,10 @@ def TreeView(root, userName, passWord):
         my_tree.column("#2",stretch=NO, minwidth=25,width=125)
         my_tree.column("#3",stretch=NO, minwidth=25,width=125)
         
-        root.mainloop()
+        my_tree.mainloop()
 
     except:
         print("Error")
-
-    
 
 def tableList(root, userName, passWord):   
     try:
@@ -77,7 +75,6 @@ def tableList(root, userName, passWord):
         
         scrollBarX = Scrollbar(root, orient=HORIZONTAL)
         scrollBarY = Scrollbar(root, orient=VERTICAL)
-
 
         my_tree = ttk.Treeview(root)
         my_tree.place(relx = 0.01,rely = 0.128, width = 646, height = 410)

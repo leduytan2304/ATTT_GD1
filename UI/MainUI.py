@@ -6,6 +6,7 @@ import LDT.LDT_1 as gup
 import LDT.LDT_2 as grp
 import LDT.LDT_3 as gru
 import LDT.LDT_4 as col
+import LDT.LDT_NhanSu as LDTNS
 import CheckPrivilege.CheckPrivilegeUser as cpu
 import CheckPrivilege.CheckPrivilegeRole as cpr 
 import Revoke as RV
@@ -43,7 +44,8 @@ def login():
         root.destroy()
         cursor.close()
         connection.close()
-        afterLogin(username, password, role)
+    
+        afterLogin(username, password)
     except oracledb.DatabaseError as e:
         print("Login fail")
         return False

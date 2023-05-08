@@ -87,7 +87,6 @@ def UI(username, password):
             print(column_entry.get())
             print(table_entry.get())
             print(username_entry.get())
-           
             Grant_role_for_user(root,'sys','tan123',privileges_entry.get(),column_entry.get(), table_entry.get(),  username_entry.get()) 
 
 
