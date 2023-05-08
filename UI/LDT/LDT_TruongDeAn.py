@@ -93,7 +93,7 @@ def TreeView_LDT(root, userName, passWord):
 def tableList_LDT(root, userName, passWord):   
     try:
         cur = active_login(userName, passWord)
-        cur.execute("select * from system.NHANVIEN")
+        cur.execute("select *  from system.PHONGBAN")
         global rows
         rows = cur.fetchall()
         total = cur.rowcount
@@ -118,12 +118,14 @@ def tableList_LDT(root, userName, passWord):
         scrollBarX.place(relx = 0.002 , rely = 0.922, width = 651, height = 22)
 
         my_tree.configure(
-            columns=("OWNER", 
-            "TABLE NAME")
+            columns=("MAPB", 
+            "TENPB",
+            "TRGPB")
         )
 
-        my_tree.heading("#0", text = "OWNER", anchor=W)
-        my_tree.heading("#1", text = "TABLE NAME", anchor=W)
+        my_tree.heading("#1", text = "MAPB", anchor=W)
+        my_tree.heading("#2", text = "TENPB", anchor=W)
+        my_tree.heading("#3", text = "TRGPB", anchor=W)
 
         for i in rows:
             my_tree.insert('','end', values = i)
@@ -140,8 +142,10 @@ def tableList_LDT(root, userName, passWord):
         print(res)
         
         #edit column 
-        my_tree.column("#0",stretch=NO, minwidth=0,width=0)
+        
         my_tree.column("#1",stretch=NO, minwidth=0,width=125)
+        my_tree.column("#2",stretch=NO, minwidth=0,width=125)
+        my_tree.column("#3",stretch=NO, minwidth=0,width=125)
         my_tree.mainloop()
 
         
@@ -149,7 +153,72 @@ def tableList_LDT(root, userName, passWord):
         print("An error occurred:", e)
         res = None
     return res
+def tableList_LDT2(root, userName, passWord):   
+    try:
+        cur = active_login(userName, passWord)
+        cur.execute("select *  from system.DEAN")
+        global rows
+        rows = cur.fetchall()
+        total = cur.rowcount
+        print("total data entries: "+ str(total))
+        for row in rows:
+            print(row)
+        
+        scrollBarX = Scrollbar(root, orient=HORIZONTAL)
+        scrollBarY = Scrollbar(root, orient=VERTICAL)
 
+        my_tree = ttk.Treeview(root)
+        my_tree.place(relx = 0.01,rely = 0.128, width = 646, height = 410)
+        my_tree.configure(yscrollcommand= scrollBarY.set, xscrollcommand= scrollBarX.set)
+        my_tree.configure(selectmode="extended")
+
+
+        scrollBarY.configure(command=my_tree.yview)
+        scrollBarX.configure(command=my_tree.xview)
+        my_tree.configure(selectmode="extended")
+
+        scrollBarY.place(relx = 0.934 , rely = 0.128, width = 22, height = 432)
+        scrollBarX.place(relx = 0.002 , rely = 0.922, width = 651, height = 22)
+
+        my_tree.configure(
+            columns=("MADA", 
+            "TENDA",
+            "NGAYBD",
+            "PHONG")
+        )
+
+        my_tree.heading("#1", text = "MADA", anchor=W)
+        my_tree.heading("#2", text = "TENDA", anchor=W)
+        my_tree.heading("#3", text = "NGAYBD", anchor=W)
+        my_tree.heading("#4", text = "PHONG", anchor=W)
+
+        for i in rows:
+            my_tree.insert('','end', values = i)
+
+        def on_select2(event):
+            item = my_tree.focus()
+            text = my_tree.item(item, "values")
+            first_paramater = text[0]
+            print(first_paramater)
+            return first_paramater
+
+        my_tree.bind("<<TreeviewSelect>>", on_select2)
+        res = on_select2(None)
+        print(res)
+        
+        #edit column 
+        
+        my_tree.column("#1",stretch=NO, minwidth=0,width=125)
+        my_tree.column("#2",stretch=NO, minwidth=0,width=125)
+        my_tree.column("#3",stretch=NO, minwidth=0,width=125)
+        my_tree.column("#4",stretch=NO, minwidth=0,width=125)
+        my_tree.mainloop()
+
+        
+    except Exception as e:
+        print("An error occurred:", e)
+        res = None
+    return res
 
         
         
@@ -229,7 +298,9 @@ def UI_Update(username, password):
                 cur.execute(sqlTxt)
                 print("sql text:" + sqlTxt)
                 cur.execute("COMMIT")
+                messagebox.showinfo("Notification", ("Update DeAn success") )
             except:
+                messagebox.showerror("showerror", "Error")
                 print("da xay ra loi") 
         
            
@@ -295,7 +366,9 @@ def UI_Insert(username, password):
                 cur.execute(sqlTxt)
                 print("sql text:" + sqlTxt)
                 cur.execute("COMMIT")
+                messagebox.showinfo("Notification", ("Insert new  DeAn success") )
             except:
+                messagebox.showerror("showerror", "Error")
                 print("da xay ra loi") 
         
            
@@ -336,7 +409,9 @@ def UI_Delete(username, password):
                 cur.execute(sqlTxt)
                 print("sql text:" + sqlTxt)
                 cur.execute("COMMIT")
+                messagebox.showinfo("Notification", ("Delete DEAN success") )
             except:
+                messagebox.showerror("showerror", "Error")
                 print("da xay ra loi") 
     Execute_btn = tk.Button(root, text="Delete", command=print_data_3)# button Drop User
     Execute_btn.place(x= 200, y = 200)
@@ -367,7 +442,9 @@ def login():
         connection.close()
     
         afterLogin(username, password)
+        messagebox.showinfo("Notification", ("Login user success") )
     except oracledb.DatabaseError as e:
+        messagebox.showerror("showerror", "Error Login")
         print("Login fail")
         return False
     
@@ -408,19 +485,21 @@ def afterLogin(username, password):
             UI_Delete(username, password)
         def Update_DEAN():
             UI_Insert(username, password)
+        def DeAn_List():
+            tableList_LDT2(newRoot, username, password)
 
         btn3 = tk.Button(newRoot, text="User List", command=userList)
-        btn3.place(x= 50, y = 40)
-
-        btn4 = tk.Button(newRoot, text="Table List", command=tableList)
-        btn4.place(x= 120, y = 40)
+        btn3.place(x= 10, y = 40)
+        btn4 = tk.Button(newRoot, text="PHONGBAN List", command=tableList)
+        btn4.place(x= 80, y = 40)
         btn5 = tk.Button(newRoot, text="Update DEAN Info ", command=Update_DEAN)
-        btn5.place(x= 200, y = 40)
+        btn5.place(x= 250, y = 40)
         btn6 = tk.Button(newRoot, text="ADD NEW DEAN ", command=Update_DEAN)
-        btn6.place(x= 350, y = 40)
+        btn6.place(x= 370, y = 40)
         btn6 = tk.Button(newRoot, text=" DELETE DEAN ", command=Delete_DEAN)
         btn6.place(x= 500, y = 40)
-       
+        btn7 = tk.Button(newRoot, text="DEAN List ", command=DeAn_List)
+        btn7.place(x= 670, y = 40)
         TreeView_LDT(newRoot,username, password) # module của TreeView
 
 
