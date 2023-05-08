@@ -346,4 +346,4 @@ def GiaoDienNV(username,password):
     btn5.grid(row = 1, column = 4, pady = 10, padx = 10)
 
     ChucNang_root.mainloop()
-GiaoDienNV('nv10','1')
+#GiaoDienNV('nv10','1')

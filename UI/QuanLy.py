@@ -460,4 +460,4 @@ def GiaoDienQL(username,password):
 
     ChucNang_root.mainloop()
 
-GiaoDienQL('nv2',1)
+#GiaoDienQL('nv2',1)
