@@ -94,4 +94,4 @@ def UI(username_login, password_login):
     Execute_btn.place(x= 180, y = 200)
     #SELECT GRANTEE,GRANTED_ROLE FROM DBA_ROLE_PRIVS WHERE GRANTED_ROLE = 'DATAENTRY'
     root.mainloop()
-UI('system', 'tan123');
+#UI('system', 'tan123');
