@@ -514,6 +514,7 @@ def update_phancong(cursor, connection):
                 cursor.execute("CALL system.UPDATE_PHANCONG('" + text_manv + "','" + text_mada + "',NULL)")
             else:
                 text_convert = "TO_DATE('" + text_thoigian + "', 'DD-MM-YYYY')"
+                print("CALL system.UPDATE_PHANCONG('" + text_manv + "','" + text_mada + "'," + text_convert + ")")
                 cursor.execute("CALL system.UPDATE_PHANCONG('" + text_manv + "','" + text_mada + "'," + text_convert + ")")
             notify = messagebox.showinfo("Thông báo", "Cập nhật phân công thành công")
         except:

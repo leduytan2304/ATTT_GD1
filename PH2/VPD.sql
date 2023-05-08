@@ -125,7 +125,7 @@ BEGIN
     object_name     => 'view_NV_PhanCong',
     policy_name     => 'PHANCONG_Select_Info',
     function_schema => 'system',
-    policy_function => 'Select_NhanVien',
+    policy_function => 'policy_NhanVien',
     statement_types => 'SELECT',
     update_check    => TRUE
   );

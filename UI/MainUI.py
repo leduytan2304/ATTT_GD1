@@ -16,8 +16,8 @@ import PTM.PTM_1 as crl
 import PTM.PTM_2 as drl
 from functools import partial
 import TruongPhong.truongphong_UI as tp
-
-
+import NhanVien as nv
+import QuanLy as ql
         
 def login():
     username = username_entry.get()
@@ -37,15 +37,19 @@ def login():
             role = "system"
         else:
             cursor.execute("SELECT granted_role FROM user_role_privs")
-            # # cursor.execute("select username, user_id, account_status, created from DBA_users")
             rows = cursor.fetchall()
+            print(rows[0][0])
             if rows[0][0] == 'TRUONGPHONG':
                 role = "truongphong"
+            elif rows[0][0] == 'NHANVIEN':
+                role = 'nhanvien'
+            elif rows[0][0] == 'QLTRUCTIEP':
+                role = 'qltructiep'
         root.destroy()
         cursor.close()
         connection.close()
-    
-        afterLogin(username, password)
+        print(role)
+        afterLogin(username, password,role)
     except oracledb.DatabaseError as e:
         print("Login fail")
         return False
@@ -174,6 +178,13 @@ def afterLogin(username, password, role):
     
     elif role == 'truongphong':
         tp.truongphong_window(username, password)
+    
+    elif role == 'nhanvien':
+        nv.GiaoDienNV(username,password)
+
+    elif role == 'qltructiep':
+        ql.GiaoDienQL(username,password)
+
 
 
 def gup_ldt(username, password): #LDT lệnh sau khi click vào Grant User Object Privilege
