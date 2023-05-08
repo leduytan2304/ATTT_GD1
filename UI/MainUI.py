@@ -47,7 +47,6 @@ def login():
         print("Login fail")
         return False
     
-
 def afterLoginUI(newRoot):
     pass
      
