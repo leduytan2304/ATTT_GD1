@@ -6,7 +6,8 @@ import LDT.LDT_1 as gup
 import LDT.LDT_2 as grp
 import LDT.LDT_3 as gru
 import LDT.LDT_4 as col
-import LDT.LDT_NhanSu as LDTNS
+import LDT.LDT_NhanSu as ns
+import PTM.PTM_TaiChinh as tc
 import CheckPrivilege.CheckPrivilegeUser as cpu
 import CheckPrivilege.CheckPrivilegeRole as cpr 
 import Revoke as RV
@@ -45,6 +46,10 @@ def login():
                 role = 'nhanvien'
             elif rows[0][0] == 'QLTRUCTIEP':
                 role = 'qltructiep'
+            elif rows[0][0] == 'NHANSU':
+                role = 'nhansu'
+            elif rows[0][0] == 'TAICHINH':
+                role = 'taichinh'
         root.destroy()
         cursor.close()
         connection.close()
@@ -184,6 +189,11 @@ def afterLogin(username, password, role):
 
     elif role == 'qltructiep':
         ql.GiaoDienQL(username,password)
+    elif role == 'nhansu':
+        ns.afterLogin(username,password)
+    
+    elif role == 'taichinh':
+        tc.taichinh_window(username, password)
 
 
 
