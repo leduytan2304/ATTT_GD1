@@ -568,15 +568,18 @@ def UI_3(username, password):
 def login():
     username = username_entry.get()
     password = password_entry.get()
+    print(username)
+    print(password)
     try:
         dsn = {
         "host": "localhost",
         "port": "1521",
         "sid": "xe",
         "user": username,
-        "password": password,
+        "password": password
         #"mode": oracledb 
         }
+        
         connection = oracledb.connect(**dsn)
         cursor = connection.cursor()
         print("Login success")
