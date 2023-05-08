@@ -141,7 +141,7 @@ def personal_infor(cursor, truongphong_Window):
     tree.heading("9", text="VAITRO", anchor=CENTER)
     tree.heading("10", text="MANQL", anchor=CENTER)
     tree.heading("11", text="PHG", anchor=CENTER)
-    cursor.execute("select * from system.view_decrypt_NHANVIEN_LUONG")
+    cursor.execute("select * from system.view_NV_NhanVien")
     rows = cursor.fetchall()
     count = 1
     list_data = []
@@ -186,7 +186,7 @@ def phancong_infor(cursor, truongphong_Window):
     tree.heading("1", text="MANV", anchor=CENTER)
     tree.heading("2",text = "MADA", anchor=CENTER)
     tree.heading("3", text = "THOIGIAN", anchor=CENTER)
-    cursor.execute("select * from system.View_Select_PhanCong_Info")
+    cursor.execute("select * from system.view_NV_PhanCong")
     rows = cursor.fetchall()
     for row in rows:
         tree.insert(parent='', index='end', values=row)
@@ -201,17 +201,17 @@ def update_personal_infor(cursor, connection):
         if len(text) == 0:
             notify = messagebox.showinfo("Thông báo", "Ngày sinh đang để trống")
             return
-        cursor.execute("select MANV from system.view_decrypt_NHANVIEN_LUONG")
+        cursor.execute("select MANV from system.view_NV_NhanVien")
         rows = cursor.fetchall()
         manv = rows[0][0]
         try:
             if text.upper() == 'NULL' or text == "Ngày sinh (DD-MM-YYYY)":
                 text_ngaysinh = 'NULL'
-                cursor.execute("update system.view_decrypt_NHANVIEN_LUONG set NGAYSINH = " + text_ngaysinh + " where MANV = '" + manv + "'")
+                cursor.execute("update system.view_NV_NhanVien set NGAYSINH = " + text_ngaysinh + " where MANV = '" + manv + "'")
             else:
                 print(text)
                 text_ngaysinh = "TO_DATE('" + text + "', 'DD-MM-YYYY')"
-                cursor.execute("update system.view_decrypt_NHANVIEN_LUONG set NGAYSINH = " + text_ngaysinh + " where MANV = '" + manv + "'")
+                cursor.execute("update system.view_NV_NhanVien set NGAYSINH = " + text_ngaysinh + " where MANV = '" + manv + "'")
             connection.commit()
             notify = messagebox.showinfo("Cập nhật", "Kiểm tra lại thông tin cá nhân để xem kết quả cập nhật")
         except:
@@ -222,15 +222,15 @@ def update_personal_infor(cursor, connection):
         if len(text) == 0:
             notify = messagebox.showinfo("Thông báo", "Địa chỉ đang để trống")
             return
-        cursor.execute("select MANV from system.view_decrypt_NHANVIEN_LUONG")
+        cursor.execute("select MANV from system.view_NV_NhanVien")
         rows = cursor.fetchall()
         manv = rows[0][0]
         try:
             if text.upper() == 'NULL' or text == "Địa chỉ":
                 text = 'NULL'
-                cursor.execute("update system.view_decrypt_NHANVIEN_LUONG set DIACHI = " + text + " where MANV = '" + manv + "'")
+                cursor.execute("update system.view_NV_NhanVien set DIACHI = " + text + " where MANV = '" + manv + "'")
             else:
-                cursor.execute("update system.view_decrypt_NHANVIEN_LUONG set DIACHI = '" + text + "' where MANV = '" + manv + "'")
+                cursor.execute("update system.view_NV_NhanVien set DIACHI = '" + text + "' where MANV = '" + manv + "'")
             connection.commit()
             notify = messagebox.showinfo("Cập nhật", "Kiểm tra lại thông tin cá nhân để xem kết quả cập nhật")
         except:
@@ -240,13 +240,13 @@ def update_personal_infor(cursor, connection):
         if len(text) == 0:
             notify = messagebox.showinfo("Thông báo", "Số điện thoại đang để trống")
             return
-        cursor.execute("select MANV from system.view_decrypt_NHANVIEN_LUONG")
+        cursor.execute("select MANV from system.view_NV_NhanVien")
         rows = cursor.fetchall()
         manv = rows[0][0]
         try:
             if text == "Số điện thoại":
                 text = 'NULL'
-            cursor.execute("update system.view_decrypt_NHANVIEN_LUONG set SODT = " + text + " where MANV = '" + manv + "'")
+            cursor.execute("update system.view_NV_NhanVien set SODT = " + text + " where MANV = '" + manv + "'")
             connection.commit()
             notify = messagebox.showinfo("Cập nhật", "Kiểm tra lại thông tin cá nhân để xem kết quả cập nhật")
         except:
@@ -421,13 +421,12 @@ def update_phancong(cursor, connection):
     update_phancong_Window.geometry("650x300")
 
     def check(MaNv, MaDa):
-        cursor.execute("select MANV from system.view_decrypt_NHANVIEN_LUONG")
+        cursor.execute("select MANV from system.view_NV_NhanVien")
         rows_manv = cursor.fetchall()
         manv = rows_manv[0][0]
         if MaNv == manv:
             return False
-        cursor.execute("select MANV from system.NHANVIEN NV, system.PHONGBAN PB where PB.TRPHG = '" +   manv + "'" +
-                       " and NV.PHG = PB.MAPB and NV.MANV != '" + manv + "'")
+        cursor.execute("select MANV from system.View_TruongPhong_Select_NhanVien_Info")
         rows_nv_list = cursor.fetchall()
         list_msnv = []
         for row in rows_nv_list:
